@@ -1,10 +1,8 @@
 package com.noodlesscoders.forumxbackend.repository.test;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
+@Entity
 @Table(name = "test")
 public class TestEntity {
 
