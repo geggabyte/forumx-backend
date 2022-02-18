@@ -1,4 +1,4 @@
-package com.noodlesscoders.forumxbackend.resource;
+package com.noodlesscoders.forumxbackend.resource.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
