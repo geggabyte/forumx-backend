@@ -16,6 +16,15 @@ public class TestEntity {
     @Column(name = "time")
     private Integer time;
 
+    public TestEntity() {
+    }
+
+    public TestEntity(Integer id, String name, Integer time) {
+        this.id = id;
+        this.name = name;
+        this.time = time;
+    }
+
     public int getId() {
         return id;
     }
