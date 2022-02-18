@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/index")
-public class IndexResource {
+public class IndexController {
     @GetMapping
     public String index() {
         return "main_page";
