@@ -1,5 +1,6 @@
 package com.noodlesscoders.forumxbackend.repository.test;
 
+import com.noodlesscoders.forumxbackend.repository.test.bean.TestEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.noodlesscoders.forumxbackend.resource.controller;
 
-import com.noodlesscoders.forumxbackend.api.TestAPI;
+import com.noodlesscoders.forumxbackend.api.test.TestAPI;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

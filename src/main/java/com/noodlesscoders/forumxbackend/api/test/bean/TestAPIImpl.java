@@ -1,9 +1,8 @@
-package com.noodlesscoders.forumxbackend.api.bean;
+package com.noodlesscoders.forumxbackend.api.test.bean;
 
-import com.noodlesscoders.forumxbackend.api.TestAPI;
-import com.noodlesscoders.forumxbackend.repository.test.TestEntity;
+import com.noodlesscoders.forumxbackend.api.test.TestAPI;
+import com.noodlesscoders.forumxbackend.repository.test.bean.TestEntity;
 import com.noodlesscoders.forumxbackend.repository.test.TestRepository;
-import com.noodlesscoders.forumxbackend.resource.rest.test.TestOB;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

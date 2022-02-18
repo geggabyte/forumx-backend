@@ -1,4 +1,4 @@
-package com.noodlesscoders.forumxbackend.repository.test;
+package com.noodlesscoders.forumxbackend.repository.test.bean;
 
 import javax.persistence.*;
 
@@ -15,6 +15,15 @@ public class TestEntity {
 
     @Column(name = "time")
     private Integer time;
+
+    public TestEntity() {
+    }
+
+    public TestEntity(Integer id, String name, Integer time) {
+        this.id = id;
+        this.name = name;
+        this.time = time;
+    }
 
     public int getId() {
         return id;
