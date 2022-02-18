@@ -1,4 +1,4 @@
-package com.noodlesscoders.forumxbackend.repository.test;
+package com.noodlesscoders.forumxbackend.repository.test.bean;
 
 import javax.persistence.*;
 

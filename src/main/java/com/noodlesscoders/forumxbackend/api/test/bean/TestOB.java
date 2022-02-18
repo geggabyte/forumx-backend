@@ -1,4 +1,4 @@
-package com.noodlesscoders.forumxbackend.resource.rest.test;
+package com.noodlesscoders.forumxbackend.api.test.bean;
 
 public class TestOB {
     private int id;
