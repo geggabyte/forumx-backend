@@ -28,20 +28,25 @@
             <li class="nav-item">
                 <a class="nav-link active" href="/user/all">AllUsers<span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/message/all">All Messages</a>
+            </li>
         </ul>
     </div>
 </nav>
-<table class="table">
-    <tr class="thead-dark">
-        <td>Id</td>
-        <td>Name</td>
-        <td>time</td>
-    </tr>
-    <tr th:each="user: ${userList}">
-        <td th:text="${user.id}"/>
-        <td th:text="${user.userName}"/>
-        <td th:text="${user.password}"/>
-    </tr>
-</table>
+<div class="content">
+    <table class="table">
+        <tr class="thead-dark">
+            <td>Id</td>
+            <td>Name</td>
+            <td>time</td>
+        </tr>
+        <tr th:each="user: ${userList}">
+            <td th:text="${user.id}"/>
+            <td th:text="${user.userName}"/>
+            <td th:text="${user.password}"/>
+        </tr>
+    </table>
+</div>
 </body>
 </html>

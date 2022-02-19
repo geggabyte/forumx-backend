@@ -6,7 +6,9 @@ import com.noodlesscoders.forumxbackend.repository.user.bean.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
@@ -37,6 +39,17 @@ public class UserAPIImpl implements UserAPI {
     @Override
     public List<UserOB> getAll() {
         return mapUserList(userRepository.findAll());
+    }
+
+    @Override
+    public Set<UserOB> getAllByIds(Set<Integer> ids) {
+        Set<UserOB> users = new HashSet<>();
+        for (Integer i : ids) {
+            UserEntity u = userRepository.findOneById(i);
+            if (u != null)
+                users.add(mapUser(u));
+        }
+        return users;
     }
 
     private List<UserOB> mapUserList(List<UserEntity> source) {

@@ -3,6 +3,7 @@ package com.noodlesscoders.forumxbackend.api.user;
 import com.noodlesscoders.forumxbackend.api.user.bean.UserOB;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserAPI {
 
@@ -11,4 +12,6 @@ public interface UserAPI {
     boolean login(UserOB userOB);
 
     List<UserOB> getAll();
+
+    Set<UserOB> getAllByIds(Set<Integer> ids);
 }

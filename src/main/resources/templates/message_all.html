@@ -1,8 +1,8 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>MainPage</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta charset="UTF-8">
+    <title>Title</title>
     <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -16,8 +16,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/user/login">Login</a>
@@ -28,21 +28,28 @@
             <li class="nav-item">
                 <a class="nav-link" href="/user/all">AllUsers</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/message/all">All Messages</a>
+            <li class="nav-item active">
+                <a class="nav-link" href="/message/all">All Messages <span class="sr-only">(current)</span></a>
             </li>
         </ul>
     </div>
 </nav>
 <div class="content">
-    <p>Get your greeting <a href="/greeting">here</a></p>
-    <p>Get all elements for test table <a href="/data/show-all">here</a></p>
-    <p>Look at sample page<a href="/test/sample">here</a></p>
-    <p>Get all elements for test table UI <a href="/test/show-all-test">here</a></p>
-    <p>Get all elements for users table UI <a href="/user/all">here</a></p>
-    <p>Login <a href="/user/login">here</a></p>
-    <p>Register <a href="/user/register">here</a></p>
-    <p>Get API documentation <a href="/swagger-ui.html">here</a></p>
+    <table th:unless="${errorStatus}" class="table">
+        <tr class="thead-dark">
+            <td>Time</td>
+            <td>UserName</td>
+            <td>Message</td>
+        </tr>
+        <tr th:each="message: ${messages}">
+            <td th:text="${message.createTime}"/>
+            <td th:text="${message.userName}"/>
+            <td th:text="${message.message}"/>
+        </tr>
+    </table>
+    <div th:if="${errorStatus}">
+        <h3 th:text="${errorMessage}"></h3>
+    </div>
 </div>
 </body>
 </html>
