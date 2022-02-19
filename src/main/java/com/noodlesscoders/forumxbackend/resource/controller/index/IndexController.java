@@ -1,4 +1,4 @@
-package com.noodlesscoders.forumxbackend.resource.controller;
+package com.noodlesscoders.forumxbackend.resource.controller.index;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

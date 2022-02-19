@@ -52,6 +52,11 @@ public class UserAPIImpl implements UserAPI {
         return users;
     }
 
+    @Override
+    public Integer getUserIdByName(String userName) {
+        return userRepository.findOneByUserName(userName).getId();
+    }
+
     private List<UserOB> mapUserList(List<UserEntity> source) {
         return source.stream().map(this::mapUser).collect(Collectors.toList());
     }

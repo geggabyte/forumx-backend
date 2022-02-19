@@ -1,4 +1,4 @@
-package com.noodlesscoders.forumxbackend.resource.controller;
+package com.noodlesscoders.forumxbackend.resource.controller.test;
 
 import com.noodlesscoders.forumxbackend.api.test.TestAPI;
 import org.springframework.beans.factory.annotation.Autowired;

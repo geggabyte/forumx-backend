@@ -8,52 +8,66 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="#">Forumx</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/login">Login</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/user/register">Register <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/user/all">AllUsers</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/message/all">All Messages</a>
-            </li>
-        </ul>
+<div class="main-body">
+    <div class="navbar-mine">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="/message/all">ForumX</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            User
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="/user/login">Login</a>
+                            <a class="dropdown-item" href="/user/register">Register</a>
+                            <a class="dropdown-item" href="/user/all">All users</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Coordinates</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
     </div>
-</nav>
-<div class="content">
-    <form action="#" th:action="@{/user/register/result}" th:object="${user}" method="post">
-        <table>
-            <tr>
-                <td><p>userName:</p></td>
-                <td><input type="text" th:field="*{userName}"/></td>
-            </tr>
-            <tr>
-                <td><p>password:</p></td>
-                <td><input type="password" th:field="*{password}"/></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Register"/></td>
-                <td><input type="reset" value="Reset"/></td>
-            </tr>
-        </table>
-    </form>
-    <div th:if="${errorStatus}">
-        <p th:text="${errorMessage}"></p>
+    <div class="content">
+
+        <form action="#" th:action="@{/user/register/result}" th:object="${user}" method="post">
+            <table>
+                <tr>
+                    <td><p>userName:</p></td>
+                    <td><input type="text" th:field="*{userName}"/></td>
+                </tr>
+                <tr>
+                    <td><p>password:</p></td>
+                    <td><input type="password" th:field="*{password}"/></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Register"/></td>
+                    <td><input type="reset" value="Reset"/></td>
+                </tr>
+            </table>
+        </form>
+        <div th:if="${errorStatus}">
+            <p th:text="${errorMessage}"></p>
+        </div>
     </div>
+
 </div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 </html>

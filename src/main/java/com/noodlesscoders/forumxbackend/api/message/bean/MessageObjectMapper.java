@@ -4,6 +4,8 @@ import com.noodlesscoders.forumxbackend.api.user.bean.UserOB;
 import com.noodlesscoders.forumxbackend.repository.message.bean.MessageEntity;
 import com.noodlesscoders.forumxbackend.resource.controller.message.bean.MessageIO;
 
+import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -12,7 +14,7 @@ import java.util.stream.Collectors;
 public class MessageObjectMapper {
 
     public static List<MessageOB> mapMessageList(List<MessageEntity> source) {
-        return source.stream().map(MessageObjectMapper::mapMessage).collect(Collectors.toList());
+        return source.stream().sorted(Comparator.comparing(MessageEntity::getCreated).reversed()).map(MessageObjectMapper::mapMessage).collect(Collectors.toList());
     }
 
     public static List<MessageIO> mapMessageList(List<MessageOB> messages, Set<UserOB> users) {
@@ -39,9 +41,28 @@ public class MessageObjectMapper {
                 continue;
             result.setUserName(user.getUserName());
             result.setMessage(message.getMessage());
-            result.setCreateTime(message.getCreateTime());
+            result.setCreateTime(new SimpleDateFormat("yy-MM-dd HH:mm").format(message.getCreateTime()));
             return result;
         }
         return null;
+    }
+
+    public static MessageEntity mapMessage(MessageOB source) {
+        MessageEntity result = new MessageEntity();
+        if (source == null)
+            return result;
+        result.setId(source.getId());
+        result.setUserId(source.getUserID());
+        result.setMessage(source.getMessage());
+        return result;
+    }
+
+    public static MessageOB mapMessage(MessageIO source, Integer userId) {
+        MessageOB result = new MessageOB();
+        if (source == null)
+            return result;
+        result.setUserID(userId);
+        result.setMessage(source.getMessage());
+        return result;
     }
 }

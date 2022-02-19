@@ -14,4 +14,6 @@ public interface UserAPI {
     List<UserOB> getAll();
 
     Set<UserOB> getAllByIds(Set<Integer> ids);
+
+    Integer getUserIdByName(String userName);
 }

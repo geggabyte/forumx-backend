@@ -37,20 +37,33 @@
         </nav>
     </div>
     <div class="content">
-        <table th:unless="${errorStatus}" class="table">
-            <tr class="thead-dark">
-                <td>Time</td>
-                <td>UserName</td>
-                <td>Message</td>
-            </tr>
-            <tr th:each="message: ${messages}">
-                <td th:text="${message.createTime}"/>
-                <td th:text="${message.userName}"/>
-                <td th:text="${message.message}"/>
-            </tr>
-        </table>
-        <div th:if="${errorStatus}">
-            <h3 th:text="${errorMessage}"></h3>
+        <div class="content">
+            <div th:unless="${loginStatus}">
+                <h4 th:if="${errorMessage} == 'noAuth'">Not logged in. Proceed to <a class="link-primary"
+                                                                                     href="/user/login">login
+                    page</a>
+                    or <a class="link-primary" href="/user/register">register page</a>
+                    <p th:if="${errorMessage} != 'noAuth'" th:text="'Error message:' + ${errorMessage}"></p></h4>
+            </div>
+
+
+            <div th:if="${loginStatus}">
+                <form action="#" th:action="@{/message/chat}" th:object="${message}" method="post">
+                    <input autofocus="autofocus" onfocus="this.select()" type="text" th:field="*{message}"/>
+                    <input type="hidden" th:value="${userName}" th:name="userName"/>
+                    <input type="hidden" th:value="${loginStatus}" th:name="loginStatus"/>
+                    <input type="submit" value="Submit"/>
+                </form>
+            </div>
+
+
+            <table>
+                <tr th:each="message: ${messages}">
+                    <td th:text="${message.createTime}"/>
+                    <td th:text="${message.userName} + ': '"/>
+                    <td th:text="${message.message}"/>
+                </tr>
+            </table>
         </div>
     </div>
 

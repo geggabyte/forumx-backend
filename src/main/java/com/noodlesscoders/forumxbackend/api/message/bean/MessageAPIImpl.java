@@ -9,6 +9,7 @@ import com.noodlesscoders.forumxbackend.resource.controller.message.bean.Message
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -23,8 +24,13 @@ public class MessageAPIImpl implements MessageAPI {
     private UserAPI userAPI;
 
     @Override
-    public boolean sendMessage() {
-        return false;
+    public void sendMessage(MessageIO message) throws Exception {
+        try {
+            MessageOB messageOB = MessageObjectMapper.mapMessage(message, userAPI.getUserIdByName(message.getUserName()));
+            messageRepository.save(MessageObjectMapper.mapMessage(messageOB));
+        } catch (Exception e) {
+            throw new Exception("Something went wrong on saving message: " + message);
+        }
     }
 
     @Override

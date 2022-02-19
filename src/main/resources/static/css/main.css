@@ -1,7 +1,19 @@
 body {
     font-family: sans-serif;
+    background-color: lightcyan !important;
 }
-.content{
+
+.main-body {
+    margin: 0em 12em 6em 12em;
+    background-color: white;
+    padding-bottom: 20px
+}
+
+.navbar-mine {
+    padding-bottom: 10pt;
+}
+
+.content {
     margin-left: 1em;
     margin-top: 0.5em;
 }

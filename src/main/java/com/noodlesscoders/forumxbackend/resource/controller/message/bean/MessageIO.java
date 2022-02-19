@@ -1,14 +1,14 @@
 package com.noodlesscoders.forumxbackend.resource.controller.message.bean;
 
-import java.util.Date;
-
 public class MessageIO {
 
     private String userName;
 
     private String message;
 
-    private Date createTime;
+    private String createTime;
+
+    private Boolean loginStatus;
 
 
     public String getUserName() {
@@ -27,11 +27,29 @@ public class MessageIO {
         this.message = message;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
+    }
+
+    public Boolean getLoginStatus() {
+        return loginStatus;
+    }
+
+    public void setLoginStatus(Boolean loginStatus) {
+        this.loginStatus = loginStatus;
+    }
+
+    @Override
+    public String toString() {
+        return "MessageIO{" +
+                "userName='" + userName + '\'' +
+                ", message='" + message + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", loginStatus=" + loginStatus +
+                '}';
     }
 }

@@ -1,6 +1,7 @@
 package com.noodlesscoders.forumxbackend.repository.message.bean;
 
 import com.noodlesscoders.forumxbackend.api.message.MessageAPI;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -18,7 +19,7 @@ public class MessageEntity {
     @Column(name = "message")
     private String message;
 
-    @GeneratedValue
+    @CreationTimestamp
     @Column(name = "created")
     private Timestamp created;
 

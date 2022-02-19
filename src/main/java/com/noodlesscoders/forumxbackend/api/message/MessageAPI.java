@@ -5,7 +5,7 @@ import com.noodlesscoders.forumxbackend.resource.controller.message.bean.Message
 import java.util.List;
 
 public interface MessageAPI {
-    boolean sendMessage();
+    void sendMessage(MessageIO message) throws Exception;
 
     List<MessageIO> readAll()  throws Exception;
 }
