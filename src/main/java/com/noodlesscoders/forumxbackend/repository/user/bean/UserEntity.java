@@ -3,7 +3,7 @@ package com.noodlesscoders.forumxbackend.repository.user.bean;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class UserEntity {
 
     @Id

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserAPI {
 
-    void registerUser(UserOB userOB);
+    boolean registerUser(UserOB userOB);
 
     boolean login(UserOB userOB);
 

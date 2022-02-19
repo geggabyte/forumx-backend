@@ -4,23 +4,34 @@ import com.noodlesscoders.forumxbackend.api.user.UserAPI;
 import com.noodlesscoders.forumxbackend.repository.user.UserRepository;
 import com.noodlesscoders.forumxbackend.repository.user.bean.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class UserAPIImpl implements UserAPI {
 
     @Autowired
     private UserRepository userRepository;
 
     @Override
-    public void registerUser(UserOB user) {
-        userRepository.save(mapUser(user));
+    public boolean registerUser(UserOB user) {
+        try {
+            userRepository.save(mapUser(user));
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public boolean login(UserOB userOB) {
-        return false;
+    public boolean login(UserOB user) {
+        UserEntity userEntity = userRepository.findOneByUserName(user.getUserName());
+        if (userEntity == null)
+            return false;
+        UserOB dbUser = mapUser(userEntity);
+        return user.getPassword().equals(dbUser.getPassword());
     }
 
     @Override
