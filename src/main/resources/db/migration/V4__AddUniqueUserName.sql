@@ -1,0 +1,3 @@
+ALTER TABLE users ADD UNIQUE (user_name);
+ALTER TABLE users ALTER COLUMN user_name SET NOT NULL;
+ALTER TABLE users ALTER COLUMN password SET NOT NULL;

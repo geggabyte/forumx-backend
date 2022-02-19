@@ -8,7 +8,7 @@ public class UserEntity {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Integer id;
 
     @Column(name = "user_name")
     private String userName;
@@ -25,11 +25,11 @@ public class UserEntity {
         this.password = password;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
