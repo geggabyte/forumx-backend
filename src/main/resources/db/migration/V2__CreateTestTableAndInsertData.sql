@@ -1,15 +1,10 @@
 CREATE TABLE IF NOT EXISTS test
 (
     id integer NOT NULL,
-    name text COLLATE pg_catalog."default",
+    name varchar,
     "time" integer,
-    CONSTRAINT test_pkey PRIMARY KEY (id)
-)
-
-    TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS public.test
-    OWNER to forumx;
+    PRIMARY KEY (id)
+);
 
 insert into test (id, name, time) values (1, 'Insert', 1850);
 insert into test (id, name, time) values (2, 'Insert', 1851);
