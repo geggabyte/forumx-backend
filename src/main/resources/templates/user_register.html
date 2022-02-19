@@ -31,24 +31,26 @@
         </ul>
     </div>
 </nav>
-<form action="#" th:action="@{/user/register/result}" th:object="${user}" method="post">
-    <table>
-        <tr>
-            <td><p>userName:</p></td>
-            <td><input type="text" th:field="*{userName}"/></td>
-        </tr>
-        <tr>
-            <td><p>password:</p></td>
-            <td><input type="password" th:field="*{password}"/></td>
-        </tr>
-        <tr>
-            <td><input type="submit" value="Register"/></td>
-            <td><input type="reset" value="Reset"/></td>
-        </tr>
-    </table>
-</form>
-<div th:if="${errorStatus}">
-    <p th:text="${errorMessage}"></p>
+<div class="content">
+    <form action="#" th:action="@{/user/register/result}" th:object="${user}" method="post">
+        <table>
+            <tr>
+                <td><p>userName:</p></td>
+                <td><input type="text" th:field="*{userName}"/></td>
+            </tr>
+            <tr>
+                <td><p>password:</p></td>
+                <td><input type="password" th:field="*{password}"/></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Register"/></td>
+                <td><input type="reset" value="Reset"/></td>
+            </tr>
+        </table>
+    </form>
+    <div th:if="${errorStatus}">
+        <p th:text="${errorMessage}"></p>
+    </div>
 </div>
 </body>
 </html>
