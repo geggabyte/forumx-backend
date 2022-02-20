@@ -9,13 +9,14 @@ import com.noodlesscoders.forumxbackend.resource.controller.message.bean.Message
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Component
 public class MessageAPIImpl implements MessageAPI {
+
+    //TODO: connect logger. Set it up with docker. Read about Jenkins maybe use it. Set up docker on raspberry
 
     @Autowired
     private MessageRepository messageRepository;

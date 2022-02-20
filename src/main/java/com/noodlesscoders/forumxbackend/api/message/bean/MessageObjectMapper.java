@@ -57,7 +57,7 @@ public class MessageObjectMapper {
         return result;
     }
 
-    public static MessageOB mapMessage(MessageIO source, Integer userId) {
+    public static MessageOB mapMessage(MessageIO source, Long userId) {
         MessageOB result = new MessageOB();
         if (source == null)
             return result;

@@ -10,9 +10,10 @@
     </parent>
     <groupId>com.noodlesscoders</groupId>
     <artifactId>forumx-backend</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1</version>
     <name>forumx-backend</name>
     <description>ForumXProject</description>
+    <packaging>jar</packaging>
     <properties>
         <java.version>1.8</java.version>
     </properties>

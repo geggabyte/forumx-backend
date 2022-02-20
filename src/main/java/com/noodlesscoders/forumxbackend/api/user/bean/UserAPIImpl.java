@@ -42,9 +42,9 @@ public class UserAPIImpl implements UserAPI {
     }
 
     @Override
-    public Set<UserOB> getAllByIds(Set<Integer> ids) {
+    public Set<UserOB> getAllByIds(Set<Long> ids) {
         Set<UserOB> users = new HashSet<>();
-        for (Integer i : ids) {
+        for (Long i : ids) {
             UserEntity u = userRepository.findOneById(i);
             if (u != null)
                 users.add(mapUser(u));
@@ -53,7 +53,7 @@ public class UserAPIImpl implements UserAPI {
     }
 
     @Override
-    public Integer getUserIdByName(String userName) {
+    public Long getUserIdByName(String userName) {
         return userRepository.findOneByUserName(userName).getId();
     }
 

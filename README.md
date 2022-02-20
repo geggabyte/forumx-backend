@@ -1,4 +1,32 @@
-# forumx-backend
- 
-    PSQL database
-docker run --name forumx-pg -p 5432:5432 -e POSTGRES_USER=forumx -e POSTGRES_PASSWORD=forumx -e POSTGRES_DB=forumx -d postgres:13.3
+# Forumx
+
+# How to run
+
+First of all you need to build a project. Using ```.\mvnw.cmd clean package``` fow Windows or ```.\mvnw clean package``` for Linux in root folder
+
+For creating compose:
+
+```
+docker compose -p forumx up
+```
+
+For shutting it down:
+
+```
+docker compose -p forumx down //shut down
+docker rmi forumx //remove forumx image
+```
+
+# Update in Docker
+
+In src\main\docker folder run commands:
+
+```
+docker compose build forumx
+docker compose pull
+docker compose -p forumx up -d
+```
+
+```
+copy C:\Users\gegac\Documents\GitHub\ForumX\forumx-backend\target\*.jar C:\Users\gegac\Documents\GitHub\ForumX\forumx-backend\src\main\docker\app.jar
+```

@@ -13,7 +13,7 @@ public interface UserAPI {
 
     List<UserOB> getAll();
 
-    Set<UserOB> getAllByIds(Set<Integer> ids);
+    Set<UserOB> getAllByIds(Set<Long> ids);
 
-    Integer getUserIdByName(String userName);
+    Long getUserIdByName(String userName);
 }

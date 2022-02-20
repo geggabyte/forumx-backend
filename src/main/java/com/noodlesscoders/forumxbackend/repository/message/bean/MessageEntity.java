@@ -1,6 +1,5 @@
 package com.noodlesscoders.forumxbackend.repository.message.bean;
 
-import com.noodlesscoders.forumxbackend.api.message.MessageAPI;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -10,11 +9,11 @@ import java.sql.Timestamp;
 @Table(name = "message")
 public class MessageEntity {
     @Id
-    @GeneratedValue
-    private Integer id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @Column(name = "user_id")
-    private Integer userId;
+    private Long userId;
 
     @Column(name = "message")
     private String message;
@@ -26,26 +25,26 @@ public class MessageEntity {
     public MessageEntity() {
     }
 
-    public MessageEntity(Integer id, Integer userId, String message, Timestamp created) {
+    public MessageEntity(long id, Long userId, String message, Timestamp created) {
         this.id = id;
         this.userId = userId;
         this.message = message;
         this.created = created;
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public Integer getUserId() {
+    public Long getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(Long userId) {
         this.userId = userId;
     }
 
