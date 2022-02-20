@@ -58,7 +58,7 @@
 
 
             <table>
-                <tr th:each="message: ${messages}">
+                <tr th:each="message: ${messages}" class="row-mine">
                     <td th:text="${message.createTime}"/>
                     <td th:text="${message.userName} + ': '"/>
                     <td th:text="${message.message}"/>

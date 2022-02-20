@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -36,19 +36,23 @@
             </div>
         </nav>
     </div>
+
     <div class="content">
-        <table th:unless="${errorStatus}" class="table">
-            <tr class="thead-dark">
-                <td>Time</td>
-                <td>UserName</td>
-                <td>Message</td>
-            </tr>
-            <tr th:each="message: ${messages}">
-                <td th:text="${message.createTime}"/>
-                <td th:text="${message.userName}"/>
-                <td th:text="${message.message}"/>
-            </tr>
-        </table>
+        <div th:unless="${errorStatus}" class="container">
+            <table class="table table-striped">
+                <tbody>
+                <tr th:each="message: ${messages}">
+                    <th scope="row">
+                        <p th:text="${message.createTime}"/>
+                        <p th:text="${message.userName}"/>
+                    </th>
+                    <td>
+                        <p th:text="${message.message}"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
         <div th:if="${errorStatus}">
             <h3 th:text="${errorMessage}"></h3>
         </div>

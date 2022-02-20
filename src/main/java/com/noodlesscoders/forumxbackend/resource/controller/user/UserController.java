@@ -63,9 +63,15 @@ public class UserController {
             model.addAttribute("errorMessage", "Error was captured");
             return "user_register";
         }
-        model.addAttribute("registerStatus", result);
-        //TODO: add handling of this. START Handling exceptions
-        return "user_register_result";
+        model.addAttribute("loginStatus", true);
+        model.addAttribute("userName", user.getUserName());
+        model.addAttribute("message", new MessageIO());
+        try {
+            model.addAttribute("messages", messageAPI.readAll());
+        } catch (Exception e) {
+            System.out.println("Error lmao. Try to find me now heheheh");
+        }
+        return "message_chat";
     }
 
     @GetMapping("/all")
