@@ -7,8 +7,8 @@ import javax.persistence.*;
 public class UserEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue
+    private Long id;
 
     @Column(name = "user_name")
     private String userName;
@@ -19,17 +19,17 @@ public class UserEntity {
     public UserEntity() {
     }
 
-    public UserEntity(long id, String userName, String password) {
+    public UserEntity(Long id, String userName, String password) {
         this.id = id;
         this.userName = userName;
         this.password = password;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

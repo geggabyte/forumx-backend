@@ -1,17 +1,17 @@
 package com.noodlesscoders.forumxbackend.api.test.bean;
 
 public class TestOB {
-    private int id;
+    private Long id;
 
     private String name;
 
     private Integer time;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -8,7 +8,7 @@ public class TestEntity {
 
     @Id
     @GeneratedValue
-    private int id;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -19,17 +19,17 @@ public class TestEntity {
     public TestEntity() {
     }
 
-    public TestEntity(Integer id, String name, Integer time) {
+    public TestEntity(Long id, String name, Integer time) {
         this.id = id;
         this.name = name;
         this.time = time;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
