@@ -9,8 +9,8 @@ import java.sql.Timestamp;
 @Table(name = "message")
 public class MessageEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    @GeneratedValue
+    private Long id;
 
     @Column(name = "user_id")
     private Long userId;
@@ -25,18 +25,18 @@ public class MessageEntity {
     public MessageEntity() {
     }
 
-    public MessageEntity(long id, Long userId, String message, Timestamp created) {
+    public MessageEntity(Long id, Long userId, String message, Timestamp created) {
         this.id = id;
         this.userId = userId;
         this.message = message;
         this.created = created;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

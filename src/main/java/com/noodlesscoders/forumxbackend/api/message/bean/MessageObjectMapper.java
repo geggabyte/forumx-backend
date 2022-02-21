@@ -51,7 +51,6 @@ public class MessageObjectMapper {
         MessageEntity result = new MessageEntity();
         if (source == null)
             return result;
-        result.setId(source.getId());
         result.setUserId(source.getUserID());
         result.setMessage(source.getMessage());
         return result;

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Component
 public class MessageAPIImpl implements MessageAPI {
 
-    //TODO: connect logger. Set it up with docker. Read about Jenkins maybe use it. Set up docker on raspberry
+    //TODO: connect logger. Set it up with docker
 
     @Autowired
     private MessageRepository messageRepository;
@@ -28,9 +28,9 @@ public class MessageAPIImpl implements MessageAPI {
     public void sendMessage(MessageIO message) throws Exception {
         try {
             MessageOB messageOB = MessageObjectMapper.mapMessage(message, userAPI.getUserIdByName(message.getUserName()));
-            messageRepository.save(MessageObjectMapper.mapMessage(messageOB));
+            messageRepository.saveAndFlush(MessageObjectMapper.mapMessage(messageOB));
         } catch (Exception e) {
-            throw new Exception("Something went wrong on saving message: " + message);
+            throw new Exception("Something went wrong on saving message: " + message + "\n" + e.getMessage());
         }
     }
 

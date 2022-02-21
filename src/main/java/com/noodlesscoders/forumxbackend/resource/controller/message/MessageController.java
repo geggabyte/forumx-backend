@@ -37,6 +37,8 @@ public class MessageController {
             }
             model.addAttribute("messages", messageAPI.readAll());
         } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.out.println(e);
             model.addAttribute("errorStatus", true);
             model.addAttribute("errorMessage", e.getMessage());
         }

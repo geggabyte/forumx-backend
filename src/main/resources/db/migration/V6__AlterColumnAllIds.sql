@@ -1,0 +1,2 @@
+ALTER TABLE users ALTER COLUMN id TYPE bigint;
+ALTER TABLE message ALTER COLUMN id TYPE bigint;
