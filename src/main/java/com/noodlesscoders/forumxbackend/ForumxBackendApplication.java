@@ -29,6 +29,7 @@ public class ForumxBackendApplication {
         message.setSubject("Application status");
         message.setText("Forumx is up and running");
         mailSender.send(message);
+        System.out.println("---------Message send---------");
     }
 
 }

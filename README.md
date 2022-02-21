@@ -1,35 +1,44 @@
 # Forumx
 
-# How to run
+## How to run
 
-After cloning project sertan variables must be: ```mailPassword=password; mailUserName=mail; privateMail=mail;```
+There is two ways to start this app:
 
-Next step, executing ```mvnw.cmd clean package``` fow Windows or ```mvnw clean package``` for Linux in root folder, you build project
+- Start it in docker
+- Start it in IntelliJIdea
 
-After building, copy ```jar``` file from ```target``` directory to ```src/main/docker/app.jar```
+For both of them you need to clone project
 
-For starting compose:
+## IntelliJIdea app
 
-```
-docker-compose -p forumx up -d
-```
+For this method you need install and set up PostgresSQL.
 
-For shutting it down:
+1. Create user and database called `forumx`, set user password `forumx`.
+2. Open cloned repository as folder.
+3. Set up environment variables `mailUserName=sample.mail@gmail.com;mailPassword=password;privateMail=private@gmail.com`
+4. Hit beautiful green button.
+5. Open [webpage](localhost:8080)
+6. Enjoy
 
-```
-docker-compose -p forumx down //shut down
-```
-And removing:
-```
-docker rmi forumx //remove forumx image
-```
+## Docker app
 
-# Update in Docker
+If you want to run app in docker follow nex steps:
 
-Rebuild updated program using ```mvnw```. Then build docker image
+1. Execute `mvnw.cmd clean package` fow Windows or `mvnw clean package` for Linux in root folder
+2. Copy `jar` file from `target` directory to `src/main/docker/app.jar`
+3. Change `mailPassword, mailUserName privateMail` to your own in `docker-compose.yml`
+4. Now you can run docker compose
 
-```
-docker build -t forumx src/main/docker/
-```
+- For starting/update docker:`docker-compose -p forumx up -d`
+- For shutting it down:`docker-compose -p forumx down`
+- For removing: `docker rmi forumx` (removes forumx image)
 
-After success build start docker-compose again. It automatically update to newer version if it's being
+### Update in Docker
+
+If you want update forumx in docker follow those steps:
+
+1. Repeat steps 1 and 2 from init running
+2. Build new docker image: `docker build -t forumx src/main/docker/`
+3. Run `docker-compose -p forumx up -d` as shown earlier
+4. Wait till it updates, if updates exists
+5. Enjoy
