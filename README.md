@@ -2,30 +2,34 @@
 
 # How to run
 
-First of all you need to build a project. Using ```.\mvnw.cmd clean package``` fow Windows or ```.\mvnw clean package``` for Linux in root folder
+After cloning project sertan variables must be: ```mailPassword=password; mailUserName=mail; privateMail=mail;```
 
-For creating compose:
+Next step, executing ```mvnw.cmd clean package``` fow Windows or ```mvnw clean package``` for Linux in root folder, you build project
+
+After building, copy ```jar``` file from ```target``` directory to ```src/main/docker/app.jar```
+
+For starting compose:
 
 ```
-docker compose -p forumx up
+docker-compose -p forumx up -d
 ```
 
 For shutting it down:
 
 ```
-docker compose -p forumx down //shut down
+docker-compose -p forumx down //shut down
+```
+And removing:
+```
 docker rmi forumx //remove forumx image
 ```
 
 # Update in Docker
 
-In src\main\docker folder run commands:
+Rebuild updated program using ```mvnw```. Then build docker image
 
 ```
-docker build -t forumx .\src\main\docker\
-docker compose -p forumx up -d
+docker build -t forumx src/main/docker/
 ```
 
-```
-copy C:\Users\gegac\Documents\GitHub\ForumX\forumx-backend\target\*.jar C:\Users\gegac\Documents\GitHub\ForumX\forumx-backend\src\main\docker\app.jar
-```
+After success build start docker-compose again. It automatically update to newer version if it's being
