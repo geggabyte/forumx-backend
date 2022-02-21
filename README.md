@@ -22,8 +22,7 @@ docker rmi forumx //remove forumx image
 In src\main\docker folder run commands:
 
 ```
-docker compose build forumx
-docker compose pull
+docker build -t forumx .\src\main\docker\
 docker compose -p forumx up -d
 ```
 
