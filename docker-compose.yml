@@ -10,6 +10,8 @@ services:
       - "8081:8080"
     depends_on:
       - db
+    env_file:
+      - .env
     environment:
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/forumx
       - SPRING_DATASOURCE_USERNAME=forumx
@@ -21,9 +23,9 @@ services:
       - SPRING_FLYWAY_LOCATIONS=classpath:db/migration
       - SPRING_FLYWAY_BASELINE-ON-MIGRATE=true
       - SERVER_PORT=8080
-      - mailUserName='serviceEmail'
-      - mailPassword='serviceEmailPassword'
-      - privateMail='userEmail'
+      - mailUserName=${mailUserName}
+      - mailPassword=${mailPassword}
+      - privateMail=${privateMail}
 
   db:
     image: 'postgres:13'
