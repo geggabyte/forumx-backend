@@ -17,7 +17,7 @@ For this method you need install and set up PostgresSQL.
 2. Open cloned repository as folder.
 3. Set up environment variables `mailUserName=sample.mail@gmail.com;mailPassword=password;privateMail=private@gmail.com`
 4. Hit beautiful green button.
-5. Open [webpage](localhost:8080)
+5. Open [webpage](http://localhost:8080)
 6. Enjoy
 
 ## Docker app
