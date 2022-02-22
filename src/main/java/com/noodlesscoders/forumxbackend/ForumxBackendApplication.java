@@ -14,33 +14,33 @@ import org.springframework.mail.javamail.JavaMailSender;
 @SpringBootApplication
 public class ForumxBackendApplication {
 
-    @Autowired
+/*    @Autowired
     private JavaMailSender mailSender;
 
     @Autowired
     private MessageAPI messageAPI;
 
     @Value("${privateMail}")
-    private String privateMail;
+    private String privateMail;*/
 
     public static void main(String[] args) {
         SpringApplication.run(ForumxBackendApplication.class, args);
     }
 
-    @EventListener(ApplicationReadyEvent.class)
+/*    @EventListener(ApplicationReadyEvent.class)
     public void sendStartedMessage() {
-        try {
+        *//*try {
             //needed to init message base. Idk what's wrong
             messageAPI.sendMessage(new MessageIO("admin", "tset", true));
         } catch (Exception ignored) {
 
-        }
+        }*//*
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(privateMail);
         message.setSubject("Application status");
         message.setText("Forumx is up and running");
         mailSender.send(message);
         System.out.println("---------Message send---------");
-    }
+    }*/
 
 }

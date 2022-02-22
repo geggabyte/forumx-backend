@@ -77,6 +77,6 @@ public class UserController {
     @GetMapping("/all")
     public String getAllUser(Model model) {
         model.addAttribute("userList", userAPI.getAll());
-        return "user_List";
+        return "user_list";
     }
 }
