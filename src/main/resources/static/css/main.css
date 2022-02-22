@@ -4,26 +4,20 @@ body {
 }
 
 .main-body {
-    margin: 0em 12em 6em 12em;
+    margin: 0em 11em 0em 11em;
     background-color: white;
-    padding-bottom: 20px
 }
 
-.navbar-mine {
-    padding-bottom: 10pt;
+.message-form {
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .content {
-    margin-left: 1em;
-    margin-right: 1em;
-    margin-top: 0.5em;
+    margin: 1em 1em 1em 1em;
+    padding-bottom: 1em;
 }
 
-.row {
-    width: 100%;
-}
-
-.container {
-    margin-left: 10pt !important;
-    width: 100%;
+.message-form {
+    margin: 1em 1em 1em 1em;
 }

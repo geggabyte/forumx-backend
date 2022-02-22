@@ -38,7 +38,7 @@ public class UserAPIImpl implements UserAPI {
 
     @Override
     public List<UserOB> getAll() {
-        return mapUserList(userRepository.findAll());
+        return mapPublicUserList(userRepository.findAll());
     }
 
     @Override
@@ -55,6 +55,17 @@ public class UserAPIImpl implements UserAPI {
     @Override
     public Long getUserIdByName(String userName) {
         return userRepository.findOneByUserName(userName).getId();
+    }
+
+    private List<UserOB> mapPublicUserList(List<UserEntity> source) {
+        return source.stream().map(this::mapPublicUser).collect(Collectors.toList());
+    }
+
+    private UserOB mapPublicUser(UserEntity source) {
+        UserOB result = new UserOB();
+        result.setId(source.getId());
+        result.setUserName(source.getUserName());
+        return result;
     }
 
     private List<UserOB> mapUserList(List<UserEntity> source) {

@@ -10,6 +10,15 @@ public class MessageIO {
 
     private Boolean loginStatus;
 
+    public MessageIO(){
+
+    }
+
+    public MessageIO(String userName, String message, Boolean loginStatus) {
+        this.userName = userName;
+        this.message = message;
+        this.loginStatus = loginStatus;
+    }
 
     public String getUserName() {
         return userName;

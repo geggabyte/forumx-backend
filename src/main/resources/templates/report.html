@@ -31,47 +31,48 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/">Coordinates</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/report">Contact Us</a>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/report">Contact Us <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
     </nav>
 
     <div class="content">
+        <div class="message-form">
+            <form action="#" th:action="@{/report}" th:object="${report}" method="post">
 
-        <form action="#" th:action="@{/user/register/result}" th:object="${user}" method="post">
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">User Name</label>
-                <div class="col-sm-10">
-                    <input type="text" th:field="*{userName}"/>
+                <div class="form-group">
+                    <label for="topic">Topic</label>
+                    <input type="text" th:field="*{topic}" class="form-control" id="topic"
+                           placeholder="Bug in messages">
                 </div>
-            </div>
-            <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-10">
-                    <input type="password" th:field="*{password}"/>
+
+                <div class="form-group">
+                    <label for="content">Report*</label>
+                    <textarea th:field="*{content}" class="form-control" id="content" rows="3"></textarea>
                 </div>
-            </div>
-            <div class="content">
-                <div class="row">
-                    <div class="col">
-                        <input class="btn btn-primary btn-sm" type="submit" value="Register"/>
-                    </div>
-                    <div class="col">
-                        <input class="btn btn-secondary btn-sm" type="reset" value="Clear"/>
-                    </div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
-                    <div class="col"></div>
+
+                <div class="form-group">
+                    <label for="userName">Your name</label>
+                    <input type="text" th:field="*{userName}" class="form-control" id="userName"
+                           placeholder="Vasya">
                 </div>
-            </div>
-        </form>
+
+
+                <div class="form-group">
+                    <label for="emailInput">Email address</label>
+                    <input type="email" th:field="*{userEmail}" class="form-control" id="emailInput"
+                           placeholder="name@example.com">
+                </div>
+
+                <input type="submit" value="Submit"/>
+
+            </form>
+        </div>
+
         <div th:if="${errorStatus}">
-            <p th:text="${errorMessage}"></p>
+            <p th:text="'Error message:' + ${errorMessage}"></p>
         </div>
     </div>
 

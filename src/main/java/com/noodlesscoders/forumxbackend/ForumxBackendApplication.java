@@ -1,5 +1,7 @@
 package com.noodlesscoders.forumxbackend;
 
+import com.noodlesscoders.forumxbackend.api.message.MessageAPI;
+import com.noodlesscoders.forumxbackend.resource.controller.message.bean.MessageIO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -15,6 +17,9 @@ public class ForumxBackendApplication {
     @Autowired
     private JavaMailSender mailSender;
 
+    @Autowired
+    private MessageAPI messageAPI;
+
     @Value("${privateMail}")
     private String privateMail;
 
@@ -24,6 +29,12 @@ public class ForumxBackendApplication {
 
     @EventListener(ApplicationReadyEvent.class)
     public void sendStartedMessage() {
+        try {
+            //needed to init message base. Idk what's wrong
+            messageAPI.sendMessage(new MessageIO("admin", "tset", true));
+        } catch (Exception ignored) {
+
+        }
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(privateMail);
         message.setSubject("Application status");

@@ -6,6 +6,7 @@ import com.noodlesscoders.forumxbackend.api.user.bean.UserOB;
 import com.noodlesscoders.forumxbackend.repository.message.MessageRepository;
 import com.noodlesscoders.forumxbackend.repository.message.bean.MessageEntity;
 import com.noodlesscoders.forumxbackend.resource.controller.message.bean.MessageIO;
+import com.noodlesscoders.forumxbackend.resource.rest.message.bean.MessageAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -32,6 +33,15 @@ public class MessageAPIImpl implements MessageAPI {
         } catch (Exception e) {
             throw new Exception("Something went wrong on saving message: " + message + "\n" + e.getMessage());
         }
+    }
+
+    @Override
+    public void sendMessage(MessageAO messageAO) throws Exception {
+        MessageIO messageIO = new MessageIO();
+        messageIO.setUserName(messageAO.getUserName());
+        messageIO.setMessage(messageAO.getMessage());
+        messageIO.setLoginStatus(userAPI.login(new UserOB(messageAO.getUserName(), messageAO.getPassword())));
+        sendMessage(messageIO);
     }
 
     @Override

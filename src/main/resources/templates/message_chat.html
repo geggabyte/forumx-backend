@@ -9,64 +9,71 @@
 </head>
 <body>
 <div class="main-body">
-    <div class="navbar-mine">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-            <a class="navbar-brand" href="/message/all">ForumX</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
-                            User
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="/user/login">Login</a>
-                            <a class="dropdown-item" href="/user/register">Register</a>
-                            <a class="dropdown-item" href="/user/all">All users</a>
-                        </div>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">Coordinates</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </div>
-    <div class="content">
-        <div class="content">
-            <div th:unless="${loginStatus}">
-                <h4 th:if="${errorMessage} == 'noAuth'">Not logged in. Proceed to <a class="link-primary"
-                                                                                     href="/user/login">login
-                    page</a>
-                    or <a class="link-primary" href="/user/register">register page</a>
-                    <p th:if="${errorMessage} != 'noAuth'" th:text="'Error message:' + ${errorMessage}"></p></h4>
-            </div>
 
-
-            <div th:if="${loginStatus}">
-                <form action="#" th:action="@{/message/chat}" th:object="${message}" method="post">
-                    <input autofocus="autofocus" onfocus="this.select()" type="text" th:field="*{message}"/>
-                    <input type="hidden" th:value="${userName}" th:name="userName"/>
-                    <input type="hidden" th:value="${loginStatus}" th:name="loginStatus"/>
-                    <input type="submit" value="Submit"/>
-                </form>
-            </div>
-
-
-            <table>
-                <tr th:each="message: ${messages}" class="row-mine">
-                    <td th:text="${message.createTime}"/>
-                    <td th:text="${message.userName} + ': '"/>
-                    <td th:text="${message.message}"/>
-                </tr>
-            </table>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="/message/all">ForumX</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        User
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="/user/login">Login</a>
+                        <a class="dropdown-item" href="/user/register">Register</a>
+                        <a class="dropdown-item" href="/user/all">All users</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Coordinates</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/report">Contact Us</a>
+                </li>
+            </ul>
         </div>
+    </nav>
+
+
+    <div th:unless="${loginStatus}">
+        <h4 th:if="${errorMessage} == 'noAuth'">Not logged in. Proceed to <a class="link-primary"
+                                                                             href="/user/login">login
+            page</a>
+            or <a class="link-primary" href="/user/register">register page</a>
+            <p th:if="${errorMessage} != 'noAuth'" th:text="'Error message:' + ${errorMessage}"></p></h4>
     </div>
 
+    <div th:if="${loginStatus}" class="message-form">
+        <form action="#" th:action="@{/message/chat}" th:object="${message}" method="post">
+            <div class="form-group">
+                <label for="Message">Message</label>
+                <textarea autofocus="autofocus" onfocus="this.select()" th:field="*{message}" class="form-control"
+                          id="Message" rows="3"></textarea>
+            </div>
+            <input type="submit" value="Submit"/>
+            <input type="hidden" th:value="${userName}" th:name="userName"/>
+            <input type="hidden" th:value="${loginStatus}" th:name="loginStatus"/>
+        </form>
+    </div>
+
+    <table class="table table-striped">
+        <tbody>
+        <tr th:each="message: ${messages}">
+            <th scope="row">
+                <p th:text="${message.createTime}"/>
+                <p th:text="${message.userName}"/>
+            </th>
+            <td>
+                <p th:text="${message.message}"/>
+            </td>
+        </tr>
+        </tbody>
+    </table>
 </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
