@@ -8,6 +8,8 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 @Component
 public class ReportAPIImpl implements ReportAPI {
 
@@ -20,7 +22,7 @@ public class ReportAPIImpl implements ReportAPI {
 
     @Override
     public void sendReport(ReportIO report) throws NoContentException {
-        if (report.getContent() == null)
+        if (report.getContent() == null || Objects.equals(report.getContent(), ""))
             throw new NoContentException("No content forund for repoert: " + report);
 
         SimpleMailMessage message = new SimpleMailMessage();

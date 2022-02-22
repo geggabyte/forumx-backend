@@ -32,6 +32,7 @@ public class ReportController {
         } catch (NoContentException e) {
             model.addAttribute("errorStatus", true);
             model.addAttribute("errorMessage", e.getMessage());
+            return "report";
         }
         return "report_succes";
     }
