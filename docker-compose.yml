@@ -2,12 +2,12 @@ version: '2'
 
 services:
   forumx:
-    image: 'forumx:latest'
-    build:
-      context: src/main/docker
     container_name: forumx
+    image: 'forumx:latest'
     ports:
       - "8081:8080"
+    build:
+      context: src/main/docker
     depends_on:
       - db
     env_file:
@@ -26,12 +26,18 @@ services:
       - mailUserName=${mailUserName}
       - mailPassword=${mailPassword}
       - privateMail=${privateMail}
-
   db:
-    image: 'postgres:13'
     container_name: forumx-pg
+    image: 'postgres:13'
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_USER=forumx
       - POSTGRES_PASSWORD=forumx
+  dozzle:
+    container_name: dozzle
+    image: amir20/dozzle:latest
+    ports:
+      - 9999:8080
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

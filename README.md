@@ -13,9 +13,12 @@ For both of them you need to clone project
 
 For this method you need install and set up PostgresSQL.
 
+After installation:
+
 1. Create user and database called `forumx`, set user password `forumx`.
 2. Open cloned repository as folder.
-3. Set up environment variables `mailUserName=sample.mail@gmail.com; mailPassword=password; privateMail=private@gmail.com`
+3. Set up environment
+   variables `mailUserName=sample.mail@gmail.com; mailPassword=password; privateMail=private@gmail.com`
 4. Hit beautiful green button.
 5. Open [webpage](http://localhost:8080)
 6. Enjoy
@@ -24,9 +27,10 @@ For this method you need install and set up PostgresSQL.
 
 If you want to run app in docker follow nex steps:
 
-1. Execute `mvnw.cmd clean package` fow Windows or `mvnw clean package` for Linux in root folder
+1. Execute in root
+   folder `mvnw -DmailUserName=agentMail -DmailPassword=password -DprivateMail=privateMail clean package`
 2. Copy `jar` file from `target` directory to `src/main/docker/app.jar`
-3. Change `mailPassword, mailUserName privateMail` to your own in `.enf` file
+3. Change `mailPassword, mailUserName privateMail` to your own in `.env` file
 4. Now you can run docker compose
 
 - For starting/update docker:`docker-compose -p forumx up -d`
@@ -42,3 +46,8 @@ If you want update forumx in docker follow those steps:
 3. Run `docker-compose -p forumx up -d` as shown earlier
 4. Wait till it updates, if updates exists
 5. Enjoy
+
+### Dozzle
+
+I've set up Dozzle as logs viewer in docker. It's available at [webpage](http://localhost:9999) when docker container is
+up and running

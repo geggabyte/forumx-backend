@@ -38,7 +38,7 @@
         </div>
     </nav>
 
-    <div th:unless="${errorStatus}">
+    <div th:unless="${error.isError()}">
         <table class="table table-striped">
             <tbody>
             <tr th:each="message: ${messages}">
@@ -53,8 +53,8 @@
             </tbody>
         </table>
     </div>
-    <div th:if="${errorStatus}">
-        <h3 th:text="${errorMessage}"></h3>
+    <div th:if="${error.isError()}">
+        <h3 th:text="${error.getMessage()}"></h3>
     </div>
 
 

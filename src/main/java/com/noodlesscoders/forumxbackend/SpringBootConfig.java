@@ -10,6 +10,7 @@ import java.util.Properties;
 
 @Configuration
 public class SpringBootConfig {
+
     @Value("${mailUserName}")
     private String mailUserName;
 
@@ -25,7 +26,6 @@ public class SpringBootConfig {
 
         mailSender.setUsername(mailUserName);
         mailSender.setPassword(mailPassword);
-
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
         props.put("mail.smtp.auth", "true");

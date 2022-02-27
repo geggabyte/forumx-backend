@@ -2,6 +2,8 @@ package com.noodlesscoders.forumxbackend;
 
 import com.noodlesscoders.forumxbackend.api.message.MessageAPI;
 import com.noodlesscoders.forumxbackend.resource.controller.message.bean.MessageIO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
@@ -13,6 +15,8 @@ import org.springframework.mail.javamail.JavaMailSender;
 
 @SpringBootApplication
 public class ForumxBackendApplication {
+
+    private final Logger logger = LoggerFactory.getLogger(ForumxBackendApplication.class);
 
 /*    @Autowired
     private JavaMailSender mailSender;
@@ -27,20 +31,9 @@ public class ForumxBackendApplication {
         SpringApplication.run(ForumxBackendApplication.class, args);
     }
 
-/*    @EventListener(ApplicationReadyEvent.class)
+    @EventListener(ApplicationReadyEvent.class)
     public void sendStartedMessage() {
-        *//*try {
-            //needed to init message base. Idk what's wrong
-            messageAPI.sendMessage(new MessageIO("admin", "tset", true));
-        } catch (Exception ignored) {
-
-        }*//*
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(privateMail);
-        message.setSubject("Application status");
-        message.setText("Forumx is up and running");
-        mailSender.send(message);
-        System.out.println("---------Message send---------");
-    }*/
+        logger.info("-------App is up and running-------");
+    }
 
 }

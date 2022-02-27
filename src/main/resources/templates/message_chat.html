@@ -40,12 +40,12 @@
     </nav>
 
 
-    <div th:unless="${loginStatus}">
-        <h4 th:if="${errorMessage} == 'noAuth'">Not logged in. Proceed to <a class="link-primary"
+    <div th:if="${error.isError()}">
+        <h4 th:if="${error.getMessage()} == 'noAuth'">Not logged in. Proceed to <a class="link-primary"
                                                                              href="/user/login">login
             page</a>
             or <a class="link-primary" href="/user/register">register page</a>
-            <p th:if="${errorMessage} != 'noAuth'" th:text="'Error message:' + ${errorMessage}"></p></h4>
+            <p th:if="${error.getMessage()} != 'noAuth'" th:text="'Error message:' + ${error.getMessage()}"></p></h4>
     </div>
 
     <div th:if="${loginStatus}" class="message-form">

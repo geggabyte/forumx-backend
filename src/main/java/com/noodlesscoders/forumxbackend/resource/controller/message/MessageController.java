@@ -1,6 +1,7 @@
 package com.noodlesscoders.forumxbackend.resource.controller.message;
 
 import com.noodlesscoders.forumxbackend.api.message.MessageAPI;
+import com.noodlesscoders.forumxbackend.resource.controller.ErrorIO;
 import com.noodlesscoders.forumxbackend.resource.controller.message.bean.MessageIO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,11 @@ public class MessageController {
     private MessageAPI messageAPI;
 
     @GetMapping("/all")
-    public String getAllMessgaes(Model model) {
+    public String getAllMessages(Model model) {
         try {
             model.addAttribute("messages", messageAPI.readAll());
         } catch (Exception e) {
-            model.addAttribute("errorStatus", true);
-            model.addAttribute("errorMessage", e.getMessage());
+            model.addAttribute("error", new ErrorIO(true, e.getMessage()));
         }
         return "message_all";
     }
@@ -38,13 +38,10 @@ public class MessageController {
             model.addAttribute("messages", messageAPI.readAll());
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println(e);
-            model.addAttribute("errorStatus", true);
-            model.addAttribute("errorMessage", e.getMessage());
+            model.addAttribute("error", new ErrorIO(true, e.getMessage()));
         }
         if (!message.getLoginStatus()) {
-            model.addAttribute("errorStatus", true);
-            model.addAttribute("errorMessage", "noAuth");
+            model.addAttribute("error", new ErrorIO(true, "No auth"));
         }
         model.addAttribute("loginStatus", message.getLoginStatus());
         model.addAttribute("userName", message.getUserName());
