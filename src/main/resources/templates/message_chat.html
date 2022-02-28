@@ -42,22 +42,21 @@
 
     <div th:if="${error.isError()}">
         <h4 th:if="${error.getMessage()} == 'noAuth'">Not logged in. Proceed to <a class="link-primary"
-                                                                             href="/user/login">login
-            page</a>
+                                                                                   href="/user/login">login page</a>
             or <a class="link-primary" href="/user/register">register page</a>
             <p th:if="${error.getMessage()} != 'noAuth'" th:text="'Error message:' + ${error.getMessage()}"></p></h4>
     </div>
 
-    <div th:if="${loginStatus}" class="message-form">
-        <form action="#" th:action="@{/message/chat}" th:object="${message}" method="post">
+    <div th:if="${currentUser.loginStatus}" class="message-form">
+        <form action="#" th:action="@{/message/chat}" th:object="${currentUser}" method="post">
             <div class="form-group">
                 <label for="Message">Message</label>
-                <textarea autofocus="autofocus" onfocus="this.select()" th:field="*{message}" class="form-control"
+                <textarea autofocus="autofocus" onfocus="this.select()" th:field="${currentUser.message}" class="form-control"
                           id="Message" rows="3"></textarea>
             </div>
             <input type="submit" value="Submit"/>
-            <input type="hidden" th:value="${userName}" th:name="userName"/>
-            <input type="hidden" th:value="${loginStatus}" th:name="loginStatus"/>
+            <input type="hidden" th:value="${currentUser.userName}" th:name="userName"/>
+            <input type="hidden" th:value="${currentUser.loginStatus}" th:name="loginStatus"/>
         </form>
     </div>
 

@@ -1,6 +1,11 @@
 package com.noodlesscoders.forumxbackend.api.user.bean;
 
+import com.noodlesscoders.forumxbackend.api.ApiException;
 import com.noodlesscoders.forumxbackend.api.user.UserAPI;
+import com.noodlesscoders.forumxbackend.api.user.bean.exception.LoginCredentialException;
+import com.noodlesscoders.forumxbackend.api.user.bean.exception.NoUserException;
+import com.noodlesscoders.forumxbackend.api.user.bean.exception.RegisterPasswordException;
+import com.noodlesscoders.forumxbackend.api.user.bean.exception.RegisterUserNameException;
 import com.noodlesscoders.forumxbackend.repository.user.UserRepository;
 import com.noodlesscoders.forumxbackend.repository.user.bean.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,22 +23,26 @@ public class UserAPIImpl implements UserAPI {
     private UserRepository userRepository;
 
     @Override
-    public boolean registerUser(UserOB user) {
-        try {
-            userRepository.save(mapUser(user));
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
+    public void registerUser(UserOB user) throws ApiException {
+        checkCredentials(user);
+        userRepository.save(mapUser(user));
+    }
+
+    private void checkCredentials(UserOB source) throws ApiException {
+        if (source.getUserName().isEmpty() || source.getUserName().length() < 4)
+            throw new RegisterUserNameException();
+        if (source.getPassword().isEmpty() || source.getPassword().length() < 6)
+            throw new RegisterPasswordException();
     }
 
     @Override
-    public boolean login(UserOB user) {
+    public void login(UserOB user) throws ApiException {
         UserEntity userEntity = userRepository.findOneByUserName(user.getUserName());
         if (userEntity == null)
-            return false;
+            throw new NoUserException(user.getUserName());
         UserOB dbUser = mapUser(userEntity);
-        return user.getPassword().equals(dbUser.getPassword());
+        if (!user.getPassword().equals(dbUser.getPassword()))
+            throw new LoginCredentialException();
     }
 
     @Override

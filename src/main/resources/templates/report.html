@@ -71,8 +71,8 @@
             </form>
         </div>
 
-        <div th:if="${errorStatus}">
-            <p th:text="'Error message:' + ${errorMessage}"></p>
+        <div th:if="${error.isError()}">
+            <p th:text="'Error message:' + ${error.getMessage()}"></p>
         </div>
     </div>
 

@@ -8,16 +8,14 @@ public class MessageIO {
 
     private String createTime;
 
-    private Boolean loginStatus;
 
     public MessageIO(){
 
     }
 
-    public MessageIO(String userName, String message, Boolean loginStatus) {
+    public MessageIO(String userName, String message) {
         this.userName = userName;
         this.message = message;
-        this.loginStatus = loginStatus;
     }
 
     public String getUserName() {
@@ -44,21 +42,12 @@ public class MessageIO {
         this.createTime = createTime;
     }
 
-    public Boolean getLoginStatus() {
-        return loginStatus;
-    }
-
-    public void setLoginStatus(Boolean loginStatus) {
-        this.loginStatus = loginStatus;
-    }
-
     @Override
     public String toString() {
         return "MessageIO{" +
                 "userName='" + userName + '\'' +
                 ", message='" + message + '\'' +
                 ", createTime='" + createTime + '\'' +
-                ", loginStatus=" + loginStatus +
                 '}';
     }
 }

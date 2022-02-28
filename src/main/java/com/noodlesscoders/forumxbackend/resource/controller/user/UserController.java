@@ -1,10 +1,11 @@
 package com.noodlesscoders.forumxbackend.resource.controller.user;
 
+import com.noodlesscoders.forumxbackend.api.ApiException;
 import com.noodlesscoders.forumxbackend.api.message.MessageAPI;
 import com.noodlesscoders.forumxbackend.api.user.UserAPI;
 import com.noodlesscoders.forumxbackend.api.user.bean.UserOB;
 import com.noodlesscoders.forumxbackend.resource.controller.ErrorIO;
-import com.noodlesscoders.forumxbackend.resource.controller.message.bean.MessageIO;
+import com.noodlesscoders.forumxbackend.resource.controller.user.bean.UserIO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,20 +40,16 @@ public class UserController {
 
     @PostMapping("/login/result")
     public String loginResult(@ModelAttribute("user") UserOB user, Model model) {
-        boolean result = userAPI.login(user);
-        if (!result) {
-            logger.error(UUID.randomUUID() + ": Error was captured");
-            model.addAttribute("error", new ErrorIO(true, "Error was captured"));
-            return "user_login";
-        }
-        model.addAttribute("loginStatus", true);
-        model.addAttribute("userName", user.getUserName());
-        model.addAttribute("message", new MessageIO());
         try {
+            userAPI.login(user);
             model.addAttribute("messages", messageAPI.readAll());
         } catch (Exception e) {
             logger.error(UUID.randomUUID() + ": " + e.getMessage(), e);
+            model.addAttribute("error", new ErrorIO(true, e.getMessage()));
+            return "user_login";
         }
+        model.addAttribute("error", new ErrorIO(false));
+        model.addAttribute("currentUser", new UserIO(true, user.getUserName()));
         return "message_chat";
     }
 
@@ -65,20 +62,18 @@ public class UserController {
 
     @PostMapping("/register/result")
     public String registerResult(@ModelAttribute("user") UserOB user, Model model) {
-        boolean result = userAPI.registerUser(user);
-        if (!result) {
-            logger.error(UUID.randomUUID() + ": Error was captured");
-            model.addAttribute("error", new ErrorIO(true, "Error was captured"));
-            return "user_register";
-        }
-        model.addAttribute("loginStatus", true);
-        model.addAttribute("userName", user.getUserName());
-        model.addAttribute("message", new MessageIO());
         try {
+            userAPI.registerUser(user);
             model.addAttribute("messages", messageAPI.readAll());
+        } catch (ApiException e) {
+            logger.error(UUID.randomUUID() + ": " + e.getMessage(), e);
+            model.addAttribute("error", new ErrorIO(true, e.getMessage()));
+            return "user_register";
         } catch (Exception e) {
             logger.error(UUID.randomUUID() + ": " + e.getMessage(), e);
         }
+        model.addAttribute("error", new ErrorIO(false));
+        model.addAttribute("currentUser", new UserIO(true, user.getUserName()));
         return "message_chat";
     }
 

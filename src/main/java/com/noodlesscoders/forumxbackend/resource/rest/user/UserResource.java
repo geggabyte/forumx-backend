@@ -1,5 +1,6 @@
 package com.noodlesscoders.forumxbackend.resource.rest.user;
 
+import com.noodlesscoders.forumxbackend.api.ApiException;
 import com.noodlesscoders.forumxbackend.api.user.UserAPI;
 import com.noodlesscoders.forumxbackend.api.user.bean.UserOB;
 import com.noodlesscoders.forumxbackend.resource.ReplyObject;
@@ -27,6 +28,11 @@ public class UserResource {
 
     @PostMapping("/register")
     public ReplyObject registerUser(UserOB userOB) {
-        return new ReplyObject(userAPI.registerUser(userOB));
+        try {
+            userAPI.registerUser(userOB);
+        } catch (ApiException e) {
+            e.printStackTrace();
+        }
+        return new ReplyObject(true);
     }
 }

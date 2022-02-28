@@ -1,5 +1,6 @@
 package com.noodlesscoders.forumxbackend.api.user;
 
+import com.noodlesscoders.forumxbackend.api.ApiException;
 import com.noodlesscoders.forumxbackend.api.user.bean.UserOB;
 
 import java.util.List;
@@ -7,9 +8,9 @@ import java.util.Set;
 
 public interface UserAPI {
 
-    boolean registerUser(UserOB userOB);
+    void registerUser(UserOB userOB) throws ApiException;
 
-    boolean login(UserOB userOB);
+    void login(UserOB userOB) throws ApiException;
 
     List<UserOB> getAll();
 
